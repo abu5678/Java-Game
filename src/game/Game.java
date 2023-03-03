@@ -38,7 +38,7 @@ public class Game {
         //make a character (with an overlaid image)
         Shape studentShape = new BoxShape(1,2);
         DynamicBody student = new DynamicBody(world, studentShape);
-        student.setPosition(new Vec2(4,-5));
+        student.setPosition(new Vec2(7,-9));
         student.addImage(new BodyImage("data/student.png", 4));
 
 
