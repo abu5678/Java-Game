@@ -26,13 +26,15 @@ public class Game {
         //make game world
         GameWorld world = new GameWorld();
 
+        GameView view = new GameView(world, 800, 600);
+
         //2. populate it with bodies (ex: platforms, collectibles, characters)
 
         //make a ground platform
 
 
         //3. make a view to look into the game world
-        UserView view = new UserView(world, 500, 500);
+      //  UserView view = new UserView(world, 500, 500);
 
 
         //optional: draw a 1-metre grid over the view
