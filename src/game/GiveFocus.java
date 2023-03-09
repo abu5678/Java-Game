@@ -13,7 +13,7 @@ public class GiveFocus implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        System.out.println("x: "+ e.getX() + " y: " +e.getY());
     }
 
     @Override

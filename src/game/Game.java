@@ -26,11 +26,13 @@ public class Game {
         //make game world
         GameWorld world = new GameWorld();
 
-        GameView view = new GameView(world, 800, 600);
+        GameView view = new GameView(world, 1080, 600);
 
         PlayerController pc = new PlayerController(world.getPlayer()    );
         view.addKeyListener(pc);
-        view.addMouseListener(new GiveFocus(view));
+
+        GiveFocus gf = new GiveFocus(view);
+        view.addMouseListener(gf);
 
         //2. populate it with bodies (ex: platforms, collectibles, characters)
 
@@ -62,7 +64,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 500, 500);
+        // JFrame debugView = new DebugViewer(world, 500, 500);
 
         // start our game world simulation!
         world.start();

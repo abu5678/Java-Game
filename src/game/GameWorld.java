@@ -9,13 +9,18 @@ public class GameWorld extends World {
         super();
 
         // make the ground
-        Shape shape = new BoxShape(11, 0.5f);
-        StaticBody ground = new StaticBody(this, shape);
-        ground.setPosition(new Vec2(0f, -11.5f));
+        Shape shape1 = new BoxShape(9, 1.5f);
+        StaticBody platform1 = new StaticBody(this, shape1);
+        platform1.setPosition(new Vec2(-11f, -13.5f));
+
+        Shape shape2 = new BoxShape(9, 1.5f);
+        StaticBody platform2 = new StaticBody(this, shape2);
+        platform2.setPosition(new Vec2(-11f, -13.5f));
+
 
         // make the character
         player = new Player(this);
-        player.setPosition(new Vec2(7, -9));
+        player.setPosition(new Vec2(-12, -10));
 
 
         //**move** here the rest of the code from Gave.java that
