@@ -21,8 +21,12 @@ public class PlayerController implements KeyListener {
         // other key commands omitted
         if (code == KeyEvent.VK_A) {
             player.startWalking(-5);
-        } else if (code == KeyEvent.VK_D) {
+        }
+        else if (code == KeyEvent.VK_D) {
             player.startWalking(5);
+        }
+        else if (code == KeyEvent.VK_SPACE) {
+            player.jump(10);
         }
     }
 
