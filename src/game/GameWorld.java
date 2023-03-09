@@ -5,6 +5,7 @@ import org.jbox2d.common.Vec2;
 
 public class GameWorld extends World {
     Player player;
+    Enemy enemy;
     public GameWorld() {
         super();
 
@@ -21,6 +22,9 @@ public class GameWorld extends World {
         // make the character
         player = new Player(this);
         player.setPosition(new Vec2(-12, -10));
+
+        enemy = new Enemy(this);
+        enemy.setPosition(new Vec2(-10, -10));
 
 
         //**move** here the rest of the code from Gave.java that
