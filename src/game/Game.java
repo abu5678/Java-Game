@@ -28,6 +28,9 @@ public class Game {
 
         GameView view = new GameView(world, 800, 600);
 
+        PlayerController pc = new PlayerController();
+        view.addKeyListener(pc);
+
         //2. populate it with bodies (ex: platforms, collectibles, characters)
 
         //make a ground platform
@@ -62,6 +65,7 @@ public class Game {
 
         // start our game world simulation!
         world.start();
+        view.requestFocus();
     }
 
     /** Run the game. */
