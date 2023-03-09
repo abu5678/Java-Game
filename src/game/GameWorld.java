@@ -4,6 +4,7 @@ import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 public class GameWorld extends World {
+    Player player;
     public GameWorld() {
         super();
 
@@ -13,11 +14,15 @@ public class GameWorld extends World {
         ground.setPosition(new Vec2(0f, -11.5f));
 
         // make the character
-        Player player = new Player(this);
+        player = new Player(this);
         player.setPosition(new Vec2(7, -9));
+
 
         //**move** here the rest of the code from Gave.java that
         //populates the World - add platforms, player, etc.
         //(don't add anything related to the view)
+    }
+    public Player getPlayer(){
+        return player;
     }
 }
