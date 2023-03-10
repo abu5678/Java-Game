@@ -28,7 +28,7 @@ public class Game {
 
         GameView view = new GameView(world, 1080, 600);
 
-        PlayerController pc = new PlayerController(world.getPlayer()    );
+        PlayerController pc = new PlayerController(world.getPlayer());
         view.addKeyListener(pc);
 
         GiveFocus gf = new GiveFocus(view);
