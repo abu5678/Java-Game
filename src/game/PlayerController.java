@@ -47,7 +47,7 @@ public class PlayerController implements KeyListener, ActionListener {
         else if (code == KeyEvent.VK_D) {
             player.startWalking(7);
             player.removeAllImages();
-            player.destroyFixture();
+            //player.destroyFixture();
           //  player.facing_right_hitbox();
             //SolidFixture P = new SolidFixture(player,player_right_hitbox);
             AttachedImage am = new AttachedImage(player,move_right,1,0,new Vec2(-4f,0));
