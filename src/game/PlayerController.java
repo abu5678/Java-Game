@@ -1,7 +1,6 @@
 package game;
 
-import city.cs.engine.AttachedImage;
-import city.cs.engine.BodyImage;
+import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
@@ -21,7 +20,10 @@ public class PlayerController implements KeyListener, ActionListener {
 
     BodyImage attack_left = new BodyImage("player/special_attack/special_attack2.GIF", 12);
 
+    private static final Shape player_right_hitbox = new PolygonShape(
+            1.69f,1.95f, 2.23f,1.66f, 2.5f,-1.67f, 0.79f,-1.68f, 0.27f,0.7f
 
+    );
 
 
     public PlayerController(Player player) {
@@ -45,6 +47,9 @@ public class PlayerController implements KeyListener, ActionListener {
         else if (code == KeyEvent.VK_D) {
             player.startWalking(7);
             player.removeAllImages();
+            player.destroyFixture();
+          //  player.facing_right_hitbox();
+            //SolidFixture P = new SolidFixture(player,player_right_hitbox);
             AttachedImage am = new AttachedImage(player,move_right,1,0,new Vec2(-4f,0));
         }
         else if (code == KeyEvent.VK_SPACE) {

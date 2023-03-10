@@ -25,8 +25,9 @@ public class Game {
 
         //make game world
         GameWorld world = new GameWorld();
+        Player player = world.getPlayer();
 
-        GameView view = new GameView(world, 1080, 600);
+        GameView view = new GameView(world, 1080, 600, player);
 
         PlayerController pc = new PlayerController(world.getPlayer());
         view.addKeyListener(pc);
