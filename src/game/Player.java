@@ -10,7 +10,7 @@ public class Player extends Walker {
         super(world);
         addImage(player_image);
         SolidFixture P = new SolidFixture(this,playerShape);
-        P.setFriction(20);
+        P.setFriction(30);
     }
     public void GetPosition(){
         Vec2 starting_pos = this.getPosition();

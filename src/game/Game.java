@@ -64,7 +64,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-        // JFrame debugView = new DebugViewer(world, 500, 500);
+         JFrame debugView = new DebugViewer(world, 500, 500);
 
         // start our game world simulation!
         world.start();

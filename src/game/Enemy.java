@@ -19,7 +19,7 @@ public class Enemy extends Walker implements StepListener{
         world.addStepListener(this);
         startWalking(3);
         SolidFixture E = new SolidFixture(this,enemyShape);
-        E.setFriction(20);
+        E.setFriction(30);
     }
 
     public void setPosition(Vec2 Pos){
