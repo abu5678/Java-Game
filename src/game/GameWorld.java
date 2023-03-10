@@ -14,18 +14,19 @@ public class GameWorld extends World {
         StaticBody platform1 = new StaticBody(this, shape1);
         platform1.setPosition(new Vec2(-11f, -13.5f));
 
-        Shape shape2 = new BoxShape(9, 1.5f);
+        Shape shape2 = new BoxShape(8, 1f);
         StaticBody platform2 = new StaticBody(this, shape2);
-        platform2.setPosition(new Vec2(-11f, -13.5f));
+        platform2.setPosition(new Vec2(10f, -10f));
 
 
         // make the character
         player = new Player(this);
         player.setPosition(new Vec2(-12, -10));
 
-        enemy = new Enemy(this);
-        enemy.setPosition(new Vec2(-10, -10));
 
+        //make enemy
+        enemy = new Enemy(this);
+        enemy.setPosition(new Vec2(10, -10));
 
         //**move** here the rest of the code from Gave.java that
         //populates the World - add platforms, player, etc.
