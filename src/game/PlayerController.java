@@ -18,7 +18,7 @@ public class PlayerController implements KeyListener, ActionListener {
 
     BodyImage idle_right = new BodyImage("player/idle/idle_animation_right.GIF", 4);
 
-    BodyImage attack_left = new BodyImage("player/special_attack/special_attack2.GIF", 12);
+    BodyImage attack_left = new BodyImage("player/special_attack/special_attack1.GIF", 12);
 
     private static final Shape player_right_hitbox = new PolygonShape(
             1.69f,1.95f, 2.23f,1.66f, 2.5f,-1.67f, 0.79f,-1.68f, 0.27f,0.7f
@@ -54,6 +54,9 @@ public class PlayerController implements KeyListener, ActionListener {
         }
         else if (code == KeyEvent.VK_SPACE) {
             player.jump(12);
+        }
+        else if (code == KeyEvent.VK_K) {
+            player.shoot();
         }
         else if (code == KeyEvent.VK_J) {
             player.removeAllImages();

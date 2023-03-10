@@ -21,14 +21,16 @@ public class Collision implements CollisionListener, ActionListener {
     public void collide(CollisionEvent collisionEvent) {
         if (collisionEvent.getOtherBody() instanceof Enemy){
             enemy = collisionEvent.getOtherBody();
+            //player.setHealth(player.getHealth()-50);
             enemy.removeAllImages();
-          //  enemy.addImage(new BodyImage("enemy/enemy_dead5.GIF",3 ));
-          //  Timer timer = new Timer(100,this);
-          //  timer.setRepeats(false);
-        //    timer.start();
+            enemy.addImage(new BodyImage("enemy/enemy_dead5.GIF",3 ));
+            Timer timer = new Timer(100,this);
+            timer.setRepeats(false);
+            timer.start();
         }
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
