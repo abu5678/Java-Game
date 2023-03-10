@@ -11,5 +11,6 @@ public class Gems extends DynamicBody {
     public Gems(World w) {
         super(w,GemShape);
         addImage(image);
+        setGravityScale(0);
     }
 }

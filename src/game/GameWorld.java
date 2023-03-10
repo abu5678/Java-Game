@@ -33,7 +33,7 @@ public class GameWorld extends World {
         player.addCollisionListener(collision);
 
         Gems gem1 = new Gems(this);
-        gem1.setPosition(new Vec2(-9,-9));
+        gem1.setPosition(new Vec2(-9,-10));
 
         GemsPickup gp = new GemsPickup(player);
         player.addCollisionListener(gp);
