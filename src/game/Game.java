@@ -27,7 +27,8 @@ public class Game {
         GameWorld world = new GameWorld();
         Player player = world.getPlayer();
 
-        GameView view = new GameView(world, 1080, 600, player);
+        GameView view = new GameView(world, 1080, 700, player);
+        world.addStepListener(new Tracker(view, world.getPlayer()));
 
         PlayerController pc = new PlayerController(world.getPlayer());
         view.addKeyListener(pc);
@@ -65,7 +66,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 500, 500);
+         JFrame debugView = new DebugViewer(world, 1080, 700);
 
         // start our game world simulation!
         world.start();

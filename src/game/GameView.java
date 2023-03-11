@@ -31,6 +31,6 @@ public class GameView extends UserView {
     }
     @Override
     protected void paintBackground(Graphics2D g) {
-        g.drawImage(background,0,0,1080,600,this);
+        g.drawImage(background,0,0,1080,700,this);
     }
 }

@@ -11,7 +11,7 @@ public class Player extends Walker {
             -1.39f, 1.96f, -2.07f, 1.91f,
             -2.32f, 1.63f, -2.55f, -1.59f
     );
-    private static int health = 5;
+    private static int health = 200;
     SolidFixture P = new SolidFixture(this, playerShape);
     private static int score = 0;
     private boolean facing_right = false;
@@ -55,11 +55,6 @@ public class Player extends Walker {
     public static void setScore(int score) {
         Player.score = score;
     }
-
-    public void GetPosition() {
-        Vec2 starting_pos = this.getPosition();
-    }
-
 
     public void setFacing_right(boolean facing_right) {
         this.facing_right = facing_right;
