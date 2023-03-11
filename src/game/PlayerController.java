@@ -40,17 +40,20 @@ public class PlayerController implements KeyListener, ActionListener {
         int code = e.getKeyCode();
         // other key commands omitted
         if (code == KeyEvent.VK_A) {
+            player.setFacing_right(false);
             player.startWalking(-7);
             player.removeAllImages();
             player.addImage(move_left);
         }
         else if (code == KeyEvent.VK_D) {
+            player.setFacing_right(true);
             player.startWalking(7);
             player.removeAllImages();
             //player.destroyFixture();
           //  player.facing_right_hitbox();
             //SolidFixture P = new SolidFixture(player,player_right_hitbox);
-            AttachedImage am = new AttachedImage(player,move_right,1,0,new Vec2(-4f,0));
+            AttachedImage am = new AttachedImage(player,move_left,1,0,new Vec2(-4f,0));
+            am.flipHorizontal();
         }
         else if (code == KeyEvent.VK_SPACE) {
             player.jump(12);
@@ -61,7 +64,9 @@ public class PlayerController implements KeyListener, ActionListener {
         else if (code == KeyEvent.VK_J) {
             player.removeAllImages();
             AttachedImage am3 = new AttachedImage(player,attack_left,1,0,new Vec2(-5f,+1));
-
+            if (player.isFacing_right()== true){
+                am3.flipHorizontal();
+            }
         }
     }
 

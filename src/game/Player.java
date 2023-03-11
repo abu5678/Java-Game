@@ -33,17 +33,21 @@ public class Player extends Walker {
         Player.health = health;
     }
 
+    public boolean isFacing_right() {
+        return facing_right;
+    }
+
     public void shoot() {
         DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.5f));
         Collision c1 = new Collision(this);
         projectile.addCollisionListener(c1);
         if (facing_right == false) {
-            projectile.setPosition(new Vec2(this.getPosition().x+3,this.getPosition().y));
-            projectile.setLinearVelocity(new Vec2(30,0));
+            projectile.setPosition(new Vec2(this.getPosition().x-2,this.getPosition().y));
+            projectile.setLinearVelocity(new Vec2(-30,0));
             //projectile.addImage()
         }
         else if (facing_right == true) {
-            projectile.setPosition(new Vec2(this.getPosition().x-3,this.getPosition().y));
+            projectile.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
             projectile.setLinearVelocity(new Vec2(30,0));
         }
     }
