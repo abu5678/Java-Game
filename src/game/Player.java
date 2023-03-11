@@ -16,6 +16,8 @@ public class Player extends Walker {
     private static int score = 0;
     private boolean facing_right = false;
 
+    public static boolean des_fixture = false;
+    SolidFixture right;
     public Player(World world) {
         super(world);
         addImage(player_image);
@@ -24,7 +26,6 @@ public class Player extends Walker {
         this.health = 200;
         setAlwaysOutline(true);
     }
-
     public static int getHealth() {
         return health;
     }
@@ -38,17 +39,20 @@ public class Player extends Walker {
     }
 
     public void shoot() {
-        DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.5f));
+        DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2f,0.5f));
         Collision c1 = new Collision(this);
         projectile.addCollisionListener(c1);
+        AttachedImage am = new AttachedImage(projectile,new BodyImage("level/fireball.PNG", 15),1,0,new Vec2(0,-1));
+        projectile.setGravityScale(0);
         if (facing_right == false) {
-            projectile.setPosition(new Vec2(this.getPosition().x-2,this.getPosition().y));
+            projectile.setPosition(new Vec2(this.getPosition().x-5,this.getPosition().y));
             projectile.setLinearVelocity(new Vec2(-30,0));
-            //projectile.addImage()
+            am.flipHorizontal();
         }
-        else if (facing_right == true) {
+        else if (facing_right) {
             projectile.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
             projectile.setLinearVelocity(new Vec2(30,0));
+
         }
     }
 

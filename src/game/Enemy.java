@@ -25,8 +25,8 @@ public class Enemy extends Walker implements StepListener{
     public void setPosition(Vec2 Pos){
        // Vec2 startPos = this.getPosition();
         super.setPosition((Pos));
-        left = Pos.x-4f;
-        right = Pos.x+4f;
+        left = Pos.x-3f;
+        right = Pos.x+3f;
     }
 
 @Override

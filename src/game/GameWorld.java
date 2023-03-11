@@ -30,8 +30,8 @@ public class GameWorld extends World {
 
 
         //make enemy
-       // enemy = new Enemy(this);
-        //enemy.setPosition(new Vec2(10, -10));
+        enemy = new Enemy(this);
+        enemy.setPosition(new Vec2(5, -7));
 
         Collision collision = new Collision(player);
         player.addCollisionListener(collision);
