@@ -13,6 +13,6 @@ public class Tracker implements StepListener {
     }
     public void preStep(StepEvent e) {}
     public void postStep(StepEvent e) {
-        view.setCentre(new Vec2(player.getPosition()));
+        view.setCentre(new Vec2(player.getPosition().x+5f,player.getPosition().y+6));
     }
 }
