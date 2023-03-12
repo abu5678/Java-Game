@@ -23,6 +23,7 @@ public class ItemPickup implements CollisionListener {
             collisionEvent.getOtherBody().destroy();
         }
         else if (collisionEvent.getOtherBody() instanceof Energy){
+            player.setEnergy(player.getEnergy() + 200);
             collisionEvent.getOtherBody().destroy();
         }
     }

@@ -18,6 +18,8 @@ public class Player extends Walker {
 
     private static int fireball_num = 0;
 
+    private static int energy = 0;
+
     public static boolean des_fixture = false;
     SolidFixture right;
 
@@ -29,12 +31,21 @@ public class Player extends Walker {
         Player.fireball_num = fireball_num;
     }
 
+    public static int getEnergy() {
+        return energy;
+    }
+
+    public static void setEnergy(int energy) {
+        Player.energy = energy;
+    }
+
     public Player(World world) {
         super(world);
         addImage(player_image);
         P = new SolidFixture(this, playerShape);
         P.setFriction(30);
         this.health = 200;
+        this.energy = 0;
         this.fireball_num = 0;
         setAlwaysOutline(true);
     }
