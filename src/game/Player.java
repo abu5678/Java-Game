@@ -38,6 +38,10 @@ public class Player extends Walker {
         return facing_right;
     }
 
+    public SolidFixture getP() {
+        return P;
+    }
+
     public void shoot() {
         DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2f,0.5f));
         Collision c1 = new Collision(this);

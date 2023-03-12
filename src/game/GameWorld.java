@@ -21,27 +21,31 @@ public class GameWorld extends World {
 
         Shape shape2 = new BoxShape(6, 1f);
         StaticBody platform2 = new StaticBody(this, shape2);
-        platform2.setPosition(new Vec2(5f, -9f));
-        AttachedImage am1 = new AttachedImage(platform2,platform1_image,(float)0.8,0,new Vec2(0,0));
+        platform2.setPosition(new Vec2(10f, 13f));
+        AttachedImage am1 = new AttachedImage(platform2,platform1_image,0.8f,0,new Vec2(0,0));
 
+        moving_platform moving_platform = new moving_platform(this);
+        moving_platform.setPosition(new Vec2(0,0));
+        AttachedImage am2 = new AttachedImage(moving_platform,platform1_image,0.4f,0,new Vec2(0,0));
 
+        // moving_platform.addImage(platform1_image);
         // make the character
 
 
 
         //make enemy
         enemy = new Enemy(this);
-        enemy.setPosition(new Vec2(5, -7));
+        enemy.setPosition(new Vec2(13, 15));
 
         Collision collision = new Collision(player);
         player.addCollisionListener(collision);
 
         Gems gem1 = new Gems(this);
         gem1.setPosition(new Vec2(-9,-10));
-        //gem1.beginContact();
+
 
         GemsPickup gp = new GemsPickup(player);
-        player.addCollisionListener(gp);
+
         //**move** here the rest of the code from Gave.java that
         //populates the World - add platforms, player, etc.
         //(don't add anything related to the view)

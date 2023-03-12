@@ -3,7 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class Gems extends DynamicBody implements SensorListener{
+public class Gems extends DynamicBody{
     private static final Shape GemShape = new BoxShape(0.3f,0.4f);
 
     private static final BodyImage image = new BodyImage("level/gem.PNG",1.5f);
@@ -17,13 +17,4 @@ public class Gems extends DynamicBody implements SensorListener{
         setGravityScale(0);
     }
 
-    @Override
-    public void beginContact(SensorEvent sensorEvent) {
-
-    }
-
-    @Override
-    public void endContact(SensorEvent sensorEvent) {
-
-    }
 }
