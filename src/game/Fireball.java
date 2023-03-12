@@ -3,9 +3,9 @@ import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 public class Fireball extends StaticBody{
-    private static final Shape fireballShape = new BoxShape(0.3f,0.4f);
+    private static final Shape fireballShape = new BoxShape(2f,0.5f);
 
-    private static final BodyImage image = new BodyImage("level/fireball.GIF",1.5f);
+    private static final BodyImage image = new BodyImage("level/fireball.PNG",15f);
 
     SolidFixture fireball = new SolidFixture(this,fireballShape);
 

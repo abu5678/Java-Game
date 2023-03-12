@@ -18,8 +18,11 @@ public class ItemPickup implements CollisionListener {
             player.setScore(player.getScore()+100);
             collisionEvent.getOtherBody().destroy();
         }
-        else if (collisionEvent.getOtherBody() instanceof Energy ||
-        collisionEvent.getOtherBody() instanceof Fireball) {
+        else if(collisionEvent.getOtherBody() instanceof Fireball) {
+            player.setFireball_num(player.getFireball_num() + 1);
+            collisionEvent.getOtherBody().destroy();
+        }
+        else if (collisionEvent.getOtherBody() instanceof Energy){
             collisionEvent.getOtherBody().destroy();
         }
     }

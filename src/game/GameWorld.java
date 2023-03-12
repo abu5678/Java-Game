@@ -18,22 +18,30 @@ public class GameWorld extends World {
         platform1.setPosition(new Vec2(-19f, -15f));
         platform1.addImage(platform1_image);
 
-
         Shape shape2 = new BoxShape(6, 1f);
-        StaticBody platform3 = new StaticBody(this, shape2);
-        platform3.setPosition(new Vec2(10f, 13f));
-        AttachedImage am1 = new AttachedImage(platform3,platform1_image,0.8f,0,new Vec2(0,0));
-
-        Shape shape3 = new BoxShape(6, 1f);
         StaticBody platform2 = new StaticBody(this, shape2);
         platform2.setPosition(new Vec2(-10f, -5f));
-        AttachedImage am3 = new AttachedImage(platform2,platform1_image,0.8f,0,new Vec2(0,0));
+        AttachedImage am1 = new AttachedImage(platform2,platform1_image,0.8f,0,new Vec2(0,0));
 
         moving_platform moving_platform = new moving_platform(this);
         moving_platform.setPosition(new Vec2(0,0));
         AttachedImage am2 = new AttachedImage(moving_platform,platform1_image,0.4f,0,new Vec2(0,0));
 
-        // moving_platform.addImage(platform1_image);
+        Shape shape3 = new BoxShape(6, 1f);
+        StaticBody platform3 = new StaticBody(this, shape3);
+        platform3.setPosition(new Vec2(10f, 13f));
+        AttachedImage am3 = new AttachedImage(platform3,platform1_image,0.8f,0,new Vec2(0,0));
+
+        Shape shape4 = new BoxShape(6, 1f);
+        StaticBody platform4 = new StaticBody(this, shape4);
+        platform4.setPosition(new Vec2(25f, 5f));
+        AttachedImage am4 = new AttachedImage(platform4,platform1_image,0.8f,0,new Vec2(0,0));
+
+        Shape shape5 = new BoxShape(6, 1f);
+        StaticBody platform5 = new StaticBody(this, shape5);
+        platform5.setPosition(new Vec2(50f, 5f));
+        AttachedImage am5 = new AttachedImage(platform5,platform1_image,0.8f,0,new Vec2(0,0));
+
         // make the character
 
 
@@ -51,6 +59,11 @@ public class GameWorld extends World {
         Gems gem2 = new Gems(this);
         gem2.setPosition(new Vec2(-7,-1.5f));
 
+        Energy energy1 = new Energy(this);
+        energy1.setPosition(new Vec2(27,9));
+
+        Fireball fireball1 = new Fireball(this);
+        fireball1.setPosition(new Vec2(52,8));
 
         ItemPickup gems = new ItemPickup(player);
         player.addCollisionListener(gems);

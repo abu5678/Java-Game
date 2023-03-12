@@ -16,14 +16,26 @@ public class Player extends Walker {
     private static int score = 0;
     private boolean facing_right = false;
 
+    private static int fireball_num = 0;
+
     public static boolean des_fixture = false;
     SolidFixture right;
+
+    public static int getFireball_num() {
+        return fireball_num;
+    }
+
+    public static void setFireball_num(int fireball_num) {
+        Player.fireball_num = fireball_num;
+    }
+
     public Player(World world) {
         super(world);
         addImage(player_image);
         P = new SolidFixture(this, playerShape);
         P.setFriction(30);
         this.health = 200;
+        this.fireball_num = 0;
         setAlwaysOutline(true);
     }
     public static int getHealth() {
