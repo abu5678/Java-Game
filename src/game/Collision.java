@@ -22,17 +22,24 @@ public class Collision implements CollisionListener, ActionListener {
         if(!(collisionEvent.getReportingBody() instanceof Player)) {
             collisionEvent.getReportingBody().destroy();
         }
-        if (collisionEvent.getOtherBody() instanceof Enemy){
-            enemy = collisionEvent.getOtherBody();
-            //player.setHealth(player.getHealth()-50);
-            enemy.removeAllImages();
-            enemy.addImage(new BodyImage("enemy/enemy_dead5.GIF",3 ));
-            player.startWalking(-7);
-            Timer timer = new Timer(100,this);
-            timer.setRepeats(false);
-            timer.start();
-            player.stopWalking();
-        }
+
+            if (collisionEvent.getOtherBody() instanceof Enemy) {
+                enemy = collisionEvent.getOtherBody();
+                if (player.isNormal_attack() || player.isSpecial_attack() || player.isUltimate_attack()) {
+                    enemy.removeAllImages();
+                    enemy.addImage(new BodyImage("enemy/enemy_dead5.GIF", 3));
+
+                    Timer timer = new Timer(100, this);
+                    timer.setRepeats(false);
+                    timer.start();
+                }
+                else {
+                    player.startWalking(-7);
+                    player.setHealth(player.getHealth()-25);
+                }
+
+            }
+
 
     }
 
