@@ -53,7 +53,7 @@ public class PlayerController implements KeyListener, ActionListener {
             am.flipHorizontal();
         }
         else if (code == KeyEvent.VK_SPACE) {
-            player.jump(12);
+            player.jump(15);
         }
         else if (code == KeyEvent.VK_K) {
             player.shoot();

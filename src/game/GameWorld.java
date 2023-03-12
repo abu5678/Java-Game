@@ -20,9 +20,14 @@ public class GameWorld extends World {
 
 
         Shape shape2 = new BoxShape(6, 1f);
+        StaticBody platform3 = new StaticBody(this, shape2);
+        platform3.setPosition(new Vec2(10f, 13f));
+        AttachedImage am1 = new AttachedImage(platform3,platform1_image,0.8f,0,new Vec2(0,0));
+
+        Shape shape3 = new BoxShape(6, 1f);
         StaticBody platform2 = new StaticBody(this, shape2);
-        platform2.setPosition(new Vec2(10f, 13f));
-        AttachedImage am1 = new AttachedImage(platform2,platform1_image,0.8f,0,new Vec2(0,0));
+        platform2.setPosition(new Vec2(-10f, -5f));
+        AttachedImage am3 = new AttachedImage(platform2,platform1_image,0.8f,0,new Vec2(0,0));
 
         moving_platform moving_platform = new moving_platform(this);
         moving_platform.setPosition(new Vec2(0,0));
@@ -41,10 +46,14 @@ public class GameWorld extends World {
         player.addCollisionListener(collision);
 
         Gems gem1 = new Gems(this);
-        gem1.setPosition(new Vec2(-9,-10));
+        gem1.setPosition(new Vec2(-19,-11));
+
+        Gems gem2 = new Gems(this);
+        gem2.setPosition(new Vec2(-7,-1.5f));
 
 
-        GemsPickup gp = new GemsPickup(player);
+        ItemPickup gems = new ItemPickup(player);
+        player.addCollisionListener(gems);
 
         //**move** here the rest of the code from Gave.java that
         //populates the World - add platforms, player, etc.
