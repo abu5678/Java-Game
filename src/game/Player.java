@@ -66,20 +66,22 @@ public class Player extends Walker {
     }
 
     public void shoot() {
-        DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2f,0.5f));
-        Collision c1 = new Collision(this);
-        projectile.addCollisionListener(c1);
-        AttachedImage am = new AttachedImage(projectile,new BodyImage("level/fireball.PNG", 15),1,0,new Vec2(0,-1));
-        projectile.setGravityScale(0);
-        if (facing_right == false) {
-            projectile.setPosition(new Vec2(this.getPosition().x-5,this.getPosition().y));
-            projectile.setLinearVelocity(new Vec2(-30,0));
-            am.flipHorizontal();
-        }
-        else if (facing_right) {
-            projectile.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
-            projectile.setLinearVelocity(new Vec2(30,0));
-
+        if (fireball_num > 0) {
+            DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2f, 0.5f));
+            Collision c1 = new Collision(this);
+            projectile.addCollisionListener(c1);
+            AttachedImage am = new AttachedImage(projectile, new BodyImage("level/fireball.PNG", 15), 1, 0, new Vec2(0, -1));
+            projectile.setGravityScale(0);
+            if (facing_right == false) {
+                projectile.setPosition(new Vec2(this.getPosition().x - 5, this.getPosition().y));
+                projectile.setLinearVelocity(new Vec2(-30, 0));
+                am.flipHorizontal();
+                fireball_num = fireball_num - 1;
+            } else if (facing_right) {
+                projectile.setPosition(new Vec2(this.getPosition().x + 2, this.getPosition().y));
+                projectile.setLinearVelocity(new Vec2(30, 0));
+                fireball_num = fireball_num - 1;
+            }
         }
     }
 

@@ -30,7 +30,7 @@ public class GameView extends UserView {
         fg.setColor(Color.white);
         fg.drawString("Score: "+ Player.getScore(),800,100);
         fg.fillRect(800,50,200,30);
-        fg.fillRect(500,45,200,30);
+        fg.fillRect(500,50,200,30);
         fg.setColor(Color.green);
         fg.fillRect(800,50,player.getHealth(),30);
         fg.setColor(Color.blue);
