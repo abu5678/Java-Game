@@ -5,7 +5,7 @@ import org.jbox2d.common.Vec2;
 
 public class Enemy extends Walker implements StepListener{
     private float left,right;
-    private static final BodyImage image = new BodyImage("enemy/enemy_run_right.GIF", 4f);
+    private static final BodyImage image = new BodyImage("data/enemy/enemy_run_right.GIF", 4f);
 
     private static final Shape enemyShape = new PolygonShape(
             -0.81f,2.0f, 0.6f,1.73f,
@@ -23,7 +23,6 @@ public class Enemy extends Walker implements StepListener{
     }
 
     public void setPosition(Vec2 Pos){
-       // Vec2 startPos = this.getPosition();
         super.setPosition((Pos));
         left = Pos.x-3f;
         right = Pos.x+3f;
@@ -33,14 +32,14 @@ public class Enemy extends Walker implements StepListener{
     public void preStep(StepEvent stepEvent){
         if (getPosition().x >right){
             startWalking(-3);
-            BodyImage image = new BodyImage("enemy/enemy_run_left.gif", 4);
+            BodyImage image = new BodyImage("data/enemy/enemy_run_left.gif", 4);
             this.removeAllImages();
             this.addImage(image);
 
         }
         if(getPosition().x<left){
             startWalking(3);
-            BodyImage image = new BodyImage("enemy/enemy_run_right.gif", 4);
+            BodyImage image = new BodyImage("data/enemy/enemy_run_right.gif", 4);
             this.removeAllImages();
             this.addImage(image);
         }

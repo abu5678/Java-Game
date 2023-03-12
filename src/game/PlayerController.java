@@ -11,23 +11,14 @@ import java.awt.event.KeyListener;
 
 public class PlayerController implements KeyListener, ActionListener {
     Player player;
-    BodyImage move_left = new BodyImage("player/player_move_left.PNG", 4);
-    BodyImage move_right = new BodyImage("player/player_move_right.GIF", 4);
+    BodyImage move_left = new BodyImage("data/player/player_move_left.PNG", 4);
+    BodyImage idle_left = new BodyImage("data/player/idle_animation_left.GIF", 4);
 
-    BodyImage idle_left = new BodyImage("player/idle/idle_animation_left.GIF", 4);
+    BodyImage normal_attack_left = new BodyImage("data/player/normal_attack_left.GIF", 12);
 
-    BodyImage idle_right = new BodyImage("player/idle/idle_animation_right.GIF", 4);
+    BodyImage ultimate_attack_left = new BodyImage("data/player/ultimate_attack_left.GIF", 12);
 
-    BodyImage normal_attack_left = new BodyImage("player/normal_attack_left.GIF", 12);
-
-    BodyImage ultimate_attack_left = new BodyImage("player/ultimate_attack_left.GIF", 12);
-
-    BodyImage attack_left = new BodyImage("player/special_attack/special_attack.GIF", 12);
-
-    private static final Shape player_right_hitbox = new PolygonShape(
-            1.69f,1.95f, 2.23f,1.66f, 2.5f,-1.67f, 0.79f,-1.68f, 0.27f,0.7f
-
-    );
+    BodyImage attack_left = new BodyImage("data/player/special_attack.GIF", 12);
 
 
     public PlayerController(Player player) {
@@ -103,7 +94,6 @@ public class PlayerController implements KeyListener, ActionListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        // other key commands omitted
         if (code == KeyEvent.VK_A) {
             player.stopWalking();
             player.removeAllImages();
@@ -116,7 +106,6 @@ public class PlayerController implements KeyListener, ActionListener {
             am2.flipHorizontal();
         }
         else if (code == KeyEvent.VK_P) {
-            player.setEnergy(player.getEnergy() - 100);
             player.setNormal_attack(false);
             player.removeAllImages();
             player.addImage(idle_left);
@@ -127,24 +116,29 @@ public class PlayerController implements KeyListener, ActionListener {
             }
         }
             else if (code == KeyEvent.VK_J) {
-            player.setEnergy(player.getEnergy() - 75);
-            player.setSpecial_attack(false);
-            player.removeAllImages();
-            player.addImage(idle_left);
-            if (player.isFacing_right() == true) {
-                player.removeAllImages();
-                AttachedImage am3 = new AttachedImage(player, idle_left, 1, 0, new Vec2(+3f, 0));
-                am3.flipHorizontal();
-            }
+                if(player.isSpecial_attack()) {
+                    player.setEnergy(player.getEnergy() - 75);
+                    player.setSpecial_attack(false);
+                    player.removeAllImages();
+                    player.addImage(idle_left);
+                    if (player.isFacing_right() == true) {
+                        player.removeAllImages();
+                        AttachedImage am3 = new AttachedImage(player, idle_left, 1, 0, new Vec2(+3f, 0));
+                        am3.flipHorizontal();
+                    }
+                }
         }
             else if (code == KeyEvent.VK_L) {
-            player.setUltimate_attack(false);
-            player.removeAllImages();
-            player.addImage(idle_left);
-            if (player.isFacing_right() == true) {
+            if (player.isUltimate_attack()) {
+                player.setEnergy(player.getEnergy() - 100);
+                player.setUltimate_attack(false);
                 player.removeAllImages();
-                AttachedImage am3 = new AttachedImage(player, idle_left, 1, 0, new Vec2(+3f, 0));
-                am3.flipHorizontal();
+                player.addImage(idle_left);
+                if (player.isFacing_right() == true) {
+                    player.removeAllImages();
+                    AttachedImage am3 = new AttachedImage(player, idle_left, 1, 0, new Vec2(+3f, 0));
+                    am3.flipHorizontal();
+                }
             }
         }
 

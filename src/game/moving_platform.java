@@ -10,11 +10,6 @@ public class moving_platform extends StaticBody implements StepListener {
     private float top, bottom;
     private float delta;
 
-    /*
-    This implementation works for static bodies that don't have a startWalking method. The body
-    is moved using multiple calls to setPosition();
-     */
-
     public moving_platform(World w) {
         super(w, moving_platform_Shape);
         startPosition = this.getPosition();

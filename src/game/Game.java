@@ -19,11 +19,6 @@ public class Game {
 
     /** Initialise a new Game. */
     public Game() {
-
-        //1. make an empty game world
-        //World world = new World();
-
-        //make game world
         GameWorld world = new GameWorld();
         Player player = world.getPlayer();
 
@@ -35,19 +30,6 @@ public class Game {
 
         GiveFocus gf = new GiveFocus(view);
         view.addMouseListener(gf);
-
-        //2. populate it with bodies (ex: platforms, collectibles, characters)
-
-        //make a ground platform
-
-
-        //3. make a view to look into the game world
-      //  UserView view = new UserView(world, 500, 500);
-
-
-        //optional: draw a 1-metre grid over the view
-        // view.setGridResolution(1);
-
 
         //4. create a Java window (frame) and add the game
         //   view to it
@@ -66,7 +48,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 1080, 700);
+        // JFrame debugView = new DebugViewer(world, 1080, 700);
 
         // start our game world simulation!
         world.start();

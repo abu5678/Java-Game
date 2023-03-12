@@ -4,7 +4,7 @@ import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 public class Player extends Walker {
-    private static BodyImage player_image = new BodyImage("player/idle/idle_animation_left.GIF", 4f);
+    private static BodyImage player_image = new BodyImage("data/player/idle_animation_left.GIF", 4f);
     private static final Shape playerShape = new PolygonShape(
             -2.49f, -1.68f, -0.76f, -1.66f,
             -0.24f, -1.22f, -0.14f, 0.62f,
@@ -12,7 +12,7 @@ public class Player extends Walker {
             -2.32f, 1.63f, -2.55f, -1.59f
     );
     private static int health = 200;
-    SolidFixture P = new SolidFixture(this, playerShape);
+    SolidFixture normal;
     private static int score = 0;
     private boolean facing_right = false;
 
@@ -56,8 +56,8 @@ public class Player extends Walker {
     public Player(World world) {
         super(world);
         addImage(player_image);
-        P = new SolidFixture(this, playerShape);
-        P.setFriction(30);
+        normal = new SolidFixture(this, playerShape);
+        normal.setFriction(30);
         this.health = 200;
         this.energy = 0;
         this.fireball_num = 0;
@@ -94,7 +94,7 @@ public class Player extends Walker {
     }
 
     public SolidFixture getP() {
-        return P;
+        return normal;
     }
 
     public void shoot() {
@@ -102,7 +102,7 @@ public class Player extends Walker {
             DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2f, 0.5f));
             Collision c1 = new Collision(this);
             projectile.addCollisionListener(c1);
-            AttachedImage am = new AttachedImage(projectile, new BodyImage("level/fireball.PNG", 15), 1, 0, new Vec2(0, -1));
+            AttachedImage am = new AttachedImage(projectile, new BodyImage("data/level/fireball.PNG", 15), 1, 0, new Vec2(0, -1));
             projectile.setGravityScale(0);
             if (facing_right == false) {
                 projectile.setPosition(new Vec2(this.getPosition().x - 5, this.getPosition().y));

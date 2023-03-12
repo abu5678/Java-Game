@@ -11,17 +11,13 @@ public class GameView extends UserView {
 
     Player player;
 
+    private final Image background = new ImageIcon("data/level/forest_background.png").getImage();
+
+    private final Image fireball = new ImageIcon("data/level/fireball.PNG").getImage();
+
     public GameView(World w, int width, int height, Player player) {
         super(w, width, height);
         this.player = player;
-    }
-
-    private final Image background = new ImageIcon("level/forest_background.png").getImage();
-
-    private final Image fireball = new ImageIcon("level/fireball.PNG").getImage();
-    public GameView(GameWorld world, int width, int height,Player player) {
-
-        super(world, width, height);
     }
     protected void paintForeground(Graphics2D fg){
         fg.setColor(Color.black);

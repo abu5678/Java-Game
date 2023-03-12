@@ -27,7 +27,7 @@ public class Collision implements CollisionListener, ActionListener {
                 enemy = collisionEvent.getOtherBody();
                 if (player.isNormal_attack() || player.isSpecial_attack() || player.isUltimate_attack()) {
                     enemy.removeAllImages();
-                    enemy.addImage(new BodyImage("enemy/enemy_dead5.GIF", 3));
+                    enemy.addImage(new BodyImage("data/enemy/enemy_dead5.GIF", 3));
 
                     Timer timer = new Timer(100, this);
                     timer.setRepeats(false);
