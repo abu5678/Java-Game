@@ -16,12 +16,53 @@ public class Player extends Walker {
     private static int score = 0;
     private boolean facing_right = false;
 
+    private boolean normal_attack = false;
+    private boolean special_attack = false;
+    private boolean ultimate_attack = false;
+
+    public boolean isUltimate_attack() {
+        return ultimate_attack;
+    }
+
+    public void setUltimate_attack(boolean ultimate_attack) {
+        this.ultimate_attack = ultimate_attack;
+    }
+
+    public boolean isSpecial_attack() {
+        return special_attack;
+    }
+
+    public void setSpecial_attack(boolean special_attack) {
+        this.special_attack = special_attack;
+    }
+
+    public boolean isNormal_attack() {
+        return normal_attack;
+    }
+
+    public void setNormal_attack(boolean normal_attack) {
+        this.normal_attack = normal_attack;
+    }
+
     private static int fireball_num = 0;
 
     private static int energy = 0;
 
-    public static boolean des_fixture = false;
-    SolidFixture right;
+
+
+    //public static boolean des_fixture = false;
+    //SolidFixture right;
+
+    public Player(World world) {
+        super(world);
+        addImage(player_image);
+        P = new SolidFixture(this, playerShape);
+        P.setFriction(30);
+        this.health = 200;
+        this.energy = 0;
+        this.fireball_num = 0;
+        setAlwaysOutline(true);
+    }
 
     public static int getFireball_num() {
         return fireball_num;
@@ -39,16 +80,7 @@ public class Player extends Walker {
         Player.energy = energy;
     }
 
-    public Player(World world) {
-        super(world);
-        addImage(player_image);
-        P = new SolidFixture(this, playerShape);
-        P.setFriction(30);
-        this.health = 200;
-        this.energy = 0;
-        this.fireball_num = 0;
-        setAlwaysOutline(true);
-    }
+
     public static int getHealth() {
         return health;
     }
