@@ -5,12 +5,14 @@ import org.jbox2d.common.Vec2;
 
 public class Player extends Walker {
     private static BodyImage player_image = new BodyImage("data/player/idle_animation_left.GIF", 4f);
+    //private static final Shape playerShape1 = new PolygonShape(
+      //      -2.49f, -1.68f, -0.76f, -1.66f,
+        //    -0.24f, -1.22f, -0.14f, 0.62f,
+          //  -1.39f, 1.96f, -2.07f, 1.91f,
+            //-2.32f, 1.63f, -2.55f, -1.59f
+    //);
     private static final Shape playerShape = new PolygonShape(
-            -2.49f, -1.68f, -0.76f, -1.66f,
-            -0.24f, -1.22f, -0.14f, 0.62f,
-            -1.39f, 1.96f, -2.07f, 1.91f,
-            -2.32f, 1.63f, -2.55f, -1.59f
-    );
+            -1.31f,2.0f, -0.26f,0.32f, -0.3f,-1.64f, -2.57f,-1.66f, -2.41f,1.69f, -1.85f,1.99f);
     private static int health = 200;
     SolidFixture normal;
     private static int score = 0;
@@ -19,6 +21,9 @@ public class Player extends Walker {
     private boolean normal_attack = false;
     private boolean special_attack = false;
     private boolean ultimate_attack = false;
+
+    private boolean fireball_attack = false;
+
 
     public boolean isUltimate_attack() {
         return ultimate_attack;
@@ -95,6 +100,14 @@ public class Player extends Walker {
 
     public SolidFixture getP() {
         return normal;
+    }
+
+    public boolean isFireball_attack() {
+        return fireball_attack;
+    }
+
+    public void setFireball_attack(boolean fireball_attack) {
+        this.fireball_attack = fireball_attack;
     }
 
     public void shoot() {

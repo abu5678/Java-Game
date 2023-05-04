@@ -24,11 +24,11 @@ public class GameWorld extends World {
         moving_platform moving_platform = new moving_platform(this);
         moving_platform.setPosition(new Vec2(0,0));
         AttachedImage am2 = new AttachedImage(moving_platform,platform1_image,0.4f,0,new Vec2(0,0));
-
-        Shape shape3 = new BoxShape(6, 1f);
+//10,13
+        Shape shape3 = new BoxShape(8, 1.5f);
         StaticBody platform3 = new StaticBody(this, shape3);
-        platform3.setPosition(new Vec2(10f, 13f));
-        AttachedImage am3 = new AttachedImage(platform3,platform1_image,0.8f,0,new Vec2(0,0));
+        platform3.setPosition(new Vec2(10,13));
+        platform3.addImage(platform1_image);
 
         Shape shape4 = new BoxShape(6, 1f);
         StaticBody platform4 = new StaticBody(this, shape4);
@@ -62,6 +62,9 @@ public class GameWorld extends World {
 
         Collision enemy_collision = new Collision(player);
         player.addCollisionListener(enemy_collision);
+
+        Portal portal1 = new Portal(this);
+        portal1.setPosition(new Vec2(-23,-11));
 
         Gems gem1 = new Gems(this);
         gem1.setPosition(new Vec2(-19,-11));

@@ -51,6 +51,7 @@ public class PlayerController implements KeyListener, ActionListener {
             player.jump(15);
         }
         else if (code == KeyEvent.VK_K) {
+            player.setFireball_attack(true);
             player.shoot();
         }
         else if (code == KeyEvent.VK_P) {
