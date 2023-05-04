@@ -18,7 +18,7 @@ public class Game {
     GameLevel currentLevel;
     GameView view;
 
-    PlayerController controller;
+    PlayerController pc;
 
     /** Initialise a new Game. */
     public Game() {
@@ -26,10 +26,10 @@ public class Game {
         //GameLevel world = new GameLevel(this);
         Player player = currentLevel.getPlayer();
 
-        GameView view = new GameView(currentLevel, 1080, 700, player);
+        view = new GameView(currentLevel, 1080, 700, player);
         currentLevel.addStepListener(new Tracker(view, currentLevel.getPlayer()));
 
-        PlayerController pc = new PlayerController(currentLevel.getPlayer());
+        pc = new PlayerController(currentLevel.getPlayer());
         view.addKeyListener(pc);
 
         GiveFocus gf = new GiveFocus(view);
@@ -63,7 +63,7 @@ public class Game {
             currentLevel = new Level2(this);
             //level now refer to the new level
             view.setWorld(currentLevel);
-            controller.updatePlayer(currentLevel.getPlayer());
+            pc.updatePlayer(currentLevel.getPlayer());
             currentLevel.start();
         }
     }
