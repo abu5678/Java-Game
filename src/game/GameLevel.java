@@ -24,7 +24,7 @@ public abstract class GameLevel extends World {
         player.addCollisionListener(enemy_collision);
 
         Portal portal1 = new Portal(this);
-        portal1.setPosition(new Vec2(-23, -11));
+        portal1.setPosition(new Vec2(-23,-11));
         player.addCollisionListener(new PortalCollision(this, game));
 
     }

@@ -5,7 +5,6 @@ import org.jbox2d.common.Vec2;
 
 public class Level1 extends GameLevel{
 
-    private int numOfEnemies = 0;
     public Level1(Game game){
         super(game);
 
@@ -59,11 +58,7 @@ public class Level1 extends GameLevel{
 
         Enemy enemy3 = new Enemy(this);
         enemy3.setPosition(new Vec2(90f,-1));
-        numOfEnemies = 3;
 
-
-        Portal portal1 = new Portal(this);
-        portal1.setPosition(new Vec2(-23,-11));
 
         Gems gem1 = new Gems(this);
         gem1.setPosition(new Vec2(-19,-11));
@@ -81,16 +76,11 @@ public class Level1 extends GameLevel{
         fireball1.setPosition(new Vec2(52,8));
 
     }
-    public int getNumOfEnemies() {
-        return numOfEnemies;
-    }
-
-    public void setNumOfEnemies(int numOfEnemies) {
-        this.numOfEnemies = numOfEnemies;
-    }
     public boolean isComplete() {
-       // if (numOfEnemies == 0)
+        if (getPlayer().getEnemiesKilled() == 3){
             return true;
-       // else return false;
+        }
+        else
+            return false;
     }
 }

@@ -16,6 +16,16 @@ public class Player extends Walker {
     private static int health = 200;
     SolidFixture normal;
     private static int score = 0;
+    private int enemiesKilled = 0;
+
+    public int getEnemiesKilled() {
+        return enemiesKilled;
+    }
+
+    public void setEnemiesKilled(int enemiesKilled) {
+        this.enemiesKilled = enemiesKilled;
+    }
+
     private boolean facing_right = false;
 
     private boolean normal_attack = false;

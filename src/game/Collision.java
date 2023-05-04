@@ -30,10 +30,12 @@ public class Collision implements CollisionListener, ActionListener {
                         player.isFireball_attack()) {
                     enemy.removeAllImages();
                     enemy.addImage(new BodyImage("data/enemy/enemy_dead5.GIF", 3));
+                    player.setEnemiesKilled(player.getEnemiesKilled()+1);
 
                     Timer timer = new Timer(100, this);
                     timer.setRepeats(false);
                     timer.start();
+
 
 
                 }
