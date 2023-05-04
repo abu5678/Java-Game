@@ -149,4 +149,8 @@ public class PlayerController implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
+
+    public void updatePlayer(Player newPlayer){
+        player = newPlayer;
+    }
 }

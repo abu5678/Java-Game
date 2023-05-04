@@ -3,13 +3,13 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class GameWorld extends World {
-    Player player;
-    BodyImage platform1_image = new BodyImage("data/level/platform1.PNG", 4);
-    public GameWorld() {
-        super();
-        player = new Player(this);
-        player.setPosition(new Vec2(-12, -10));
+public class Level1 extends GameLevel{
+
+    private int numOfEnemies = 0;
+    public Level1(Game game){
+        super(game);
+
+        BodyImage platform1_image = new BodyImage("data/level/platform1.PNG", 4);
 
         Shape shape1 = new BoxShape(8, 1.5f);
         StaticBody platform1 = new StaticBody(this, shape1);
@@ -59,9 +59,8 @@ public class GameWorld extends World {
 
         Enemy enemy3 = new Enemy(this);
         enemy3.setPosition(new Vec2(90f,-1));
+        numOfEnemies = 3;
 
-        Collision enemy_collision = new Collision(player);
-        player.addCollisionListener(enemy_collision);
 
         Portal portal1 = new Portal(this);
         portal1.setPosition(new Vec2(-23,-11));
@@ -81,11 +80,17 @@ public class GameWorld extends World {
         Fireball fireball1 = new Fireball(this);
         fireball1.setPosition(new Vec2(52,8));
 
-        ItemPickup items = new ItemPickup(player);
-        player.addCollisionListener(items);
-
     }
-    public Player getPlayer(){
-        return player;
+    public int getNumOfEnemies() {
+        return numOfEnemies;
+    }
+
+    public void setNumOfEnemies(int numOfEnemies) {
+        this.numOfEnemies = numOfEnemies;
+    }
+    public boolean isComplete() {
+       // if (numOfEnemies == 0)
+            return true;
+       // else return false;
     }
 }

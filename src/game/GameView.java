@@ -15,7 +15,7 @@ public class GameView extends UserView {
 
     private final Image fireball = new ImageIcon("data/level/fireball.PNG").getImage();
 
-    public GameView(World w, int width, int height, Player player) {
+    public GameView(GameLevel w, int width, int height, Player player) {
         super(w, width, height);
         this.player = player;
     }
@@ -38,6 +38,7 @@ public class GameView extends UserView {
     }
     @Override
     protected void paintBackground(Graphics2D bg) {
+
         bg.drawImage(background,0,0,1080,700,this);
     }
 }

@@ -15,17 +15,21 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * Your main game entry point
  */
 public class Game {
+    GameLevel currentLevel;
+    GameView view;
 
+    PlayerController controller;
 
     /** Initialise a new Game. */
     public Game() {
-        GameWorld world = new GameWorld();
-        Player player = world.getPlayer();
+        currentLevel = new Level1(this);
+        //GameLevel world = new GameLevel(this);
+        Player player = currentLevel.getPlayer();
 
-        GameView view = new GameView(world, 1080, 700, player);
-        world.addStepListener(new Tracker(view, world.getPlayer()));
+        GameView view = new GameView(currentLevel, 1080, 700, player);
+        currentLevel.addStepListener(new Tracker(view, currentLevel.getPlayer()));
 
-        PlayerController pc = new PlayerController(world.getPlayer());
+        PlayerController pc = new PlayerController(currentLevel.getPlayer());
         view.addKeyListener(pc);
 
         GiveFocus gf = new GiveFocus(view);
@@ -51,7 +55,17 @@ public class Game {
         // JFrame debugView = new DebugViewer(world, 1080, 700);
 
         // start our game world simulation!
-        world.start();
+        currentLevel.start();
+    }
+    public void goToNextLevel() {
+        if (currentLevel instanceof Level1) {
+            currentLevel.stop();
+            currentLevel = new Level2(this);
+            //level now refer to the new level
+            view.setWorld(currentLevel);
+            controller.updatePlayer(currentLevel.getPlayer());
+            currentLevel.start();
+        }
     }
 
     /** Run the game. */

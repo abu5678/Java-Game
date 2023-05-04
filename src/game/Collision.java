@@ -34,6 +34,8 @@ public class Collision implements CollisionListener, ActionListener {
                     Timer timer = new Timer(100, this);
                     timer.setRepeats(false);
                     timer.start();
+
+
                 }
                 else if(collisionEvent.getReportingBody() instanceof Player){
                     player.startWalking(-7);
