@@ -13,44 +13,29 @@ public class Boss extends Walker implements StepListener{
             0.67f,-1.52f, -1.85f,-1.58f,
             -1.75f,-0.4f, -1.33f,1.8f
     );
-    public Boss(World world) {
+    Player player;
+    public Boss(World world,Player player) {
         super(world);
+        this.player = player;
         addImage(image);
         world.addStepListener(this);
-       // startWalking(3);
+        startWalking(4);
         SolidFixture E = new SolidFixture(this,enemyShape);
         E.setFriction(30);
         setAlwaysOutline(true);
     }
-/*
-    public void setPosition(Vec2 Pos){
-        super.setPosition((Pos));
-        left = Pos.x-3f;
-        right = Pos.x+3f;
-    }
+
 
     @Override
     public void preStep(StepEvent stepEvent){
-        if (getPosition().x >right){
-            startWalking(-3);
-            BodyImage image = new BodyImage("data/enemy/enemy_run_left.gif", 4);
-            this.removeAllImages();
-            this.addImage(image);
-
+        if (getPosition().x > player.getPosition().x){
+            startWalking(-4);
         }
-        if(getPosition().x<left){
-            startWalking(3);
-            BodyImage image = new BodyImage("data/enemy/enemy_run_right.gif", 4);
-            this.removeAllImages();
-            this.addImage(image);
+        if(getPosition().x < player.getPosition().x){
+            startWalking(4);
         }
-    }*/
-
-
-    @Override
-    public void preStep(StepEvent stepEvent) {
-
     }
+
 
     @Override
     public void postStep(StepEvent stepEvent) {

@@ -41,7 +41,7 @@ public class Level3 extends GameLevel {
         platform5.addImage(platform2_image);
         platform5.setAlwaysOutline(true);
 
-        Boss boss = new Boss(this);
+        Boss boss = new Boss(this,getPlayer());
         boss.setPosition(new Vec2(35, -11));
 
     }
