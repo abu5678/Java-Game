@@ -4,7 +4,8 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 import org.jbox2d.common.Vec2;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class Game {
     GameView view;
 
     PlayerController pc;
+    private SoundClip level1_music;
+    private SoundClip level2_music;
+    private SoundClip level3_music;
 
     /** Initialise a new Game. */
     public Game() {
@@ -60,10 +64,20 @@ public class Game {
     public void goToNextLevel() {
         if (currentLevel instanceof Level1) {
             currentLevel.stop();
-            currentLevel = new Level2(this);
+            currentLevel = new Level3(this);
+            Image level_3_background = new ImageIcon("data/level/level3_bg.jpg").getImage();
+            view.setBackground(level_3_background);
+            try {
+                level3_music = new SoundClip("data/level/level3_music.wav");
+                level3_music.loop();
+                level3_music.setVolume(0.2);
+            } catch (UnsupportedAudioFileException|IOException|LineUnavailableException e) {
+
+            }
             //level now refer to the new level
             view.setWorld(currentLevel);
             pc.updatePlayer(currentLevel.getPlayer());
+            currentLevel.addStepListener(new Tracker(view, currentLevel.getPlayer()));
             currentLevel.start();
         }
     }

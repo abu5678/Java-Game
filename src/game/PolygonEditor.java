@@ -1,4 +1,6 @@
 package game;
+import org.jbox2d.common.Vec2;
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
@@ -177,7 +179,7 @@ public class PolygonEditor extends JPanel
         String s = "";
         for (Point2D.Float p : points) {
             if (s.length() > 0) s += ", ";
-            s += round(p.x) + "f" + "," + round(p.y) + "f";
+            s += round(p.x-4) + "f" + "," + round(p.y+2) + "f";
         }
         return s;
     }
@@ -241,8 +243,8 @@ public class PolygonEditor extends JPanel
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        String fileName = "data/player/idle_animation_left.GIF";
-        float boxHeight = 4.0f;
+        String fileName = "data/player/ultimate_attack_right.GIF";
+        float boxHeight = 12f;
         int firstCoordIndex = 0;
         if (args.length > 0) {
             try {
@@ -268,6 +270,7 @@ public class PolygonEditor extends JPanel
             boolean gotX = false;
             float x = 0;
             float y = 0;
+            //new Vec2(-5f,+1)
             while (i < coordStrings.size()) {
                 try {
                     float xy = Float.parseFloat(coordStrings.get(i));

@@ -77,7 +77,7 @@ public class Level1 extends GameLevel{
 
     }
     public boolean isComplete() {
-        if (getPlayer().getEnemiesKilled() == 3){
+        if (getPlayer().getEnemiesKilled() == 0){
             return true;
         }
         else

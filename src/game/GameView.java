@@ -11,7 +11,11 @@ public class GameView extends UserView {
 
     Player player;
 
-    private final Image background = new ImageIcon("data/level/forest_background.png").getImage();
+    public void setBackground(Image background) {
+        this.background = background;
+    }
+
+    private Image background = new ImageIcon("data/level/forest_background.png").getImage();
 
     private final Image fireball = new ImageIcon("data/level/fireball.PNG").getImage();
 

@@ -13,8 +13,30 @@ public class Player extends Walker {
     //);
     private static final Shape playerShape = new PolygonShape(
             -1.31f,2.0f, -0.26f,0.32f, -0.3f,-1.64f, -2.57f,-1.66f, -2.41f,1.69f, -1.85f,1.99f);
+
+    private static final Shape normal_attack_Left_Shape = new PolygonShape(
+            0.78f,-1.61f, -9.21f,-1.86f, -8.31f,0.72f, -0.31f,2.6f
+    );
+    private static final Shape normal_attack_Right_Shape = new PolygonShape(
+            -3.28f,-1.61f, 6.75f,-1.54f, 5.37f,1.62f, -2.33f,2.46f
+    );
+    private static final Shape special_attack_Left_Shape = new PolygonShape(
+            0.81f,-1.57f, -12.34f,-1.72f, -11.21f,2.68f, -1.0f,2.6f
+    );
+    private static final Shape special_attack_Right_Shape = new PolygonShape(
+            -4.37f,-1.61f, 9.8f,-1.72f, 8.64f,2.1f, -0.55f,3.15f
+    );
+    private static final Shape ultimate_attack_Left_Shape = new PolygonShape(
+            7.52f,-1.25f, -17.3f,-1.37f, -17.3f,3.32f, 3.07f,3.32f
+    );
+    private static final Shape ultimate_attack_Right_Shape = new PolygonShape(
+            -11.94f,-1.6f, 12.19f,-1.37f, 12.07f,2.96f, -8.54f,2.85f
+    );
     private static int health = 200;
     SolidFixture normal;
+    SolidFixture normal_attack_hb;
+    SolidFixture special_attack_hb;
+    SolidFixture ultimate_attack_hb;
     private static int score = 0;
     private int enemiesKilled = 0;
 
@@ -77,6 +99,56 @@ public class Player extends Walker {
         this.energy = 0;
         this.fireball_num = 0;
         setAlwaysOutline(true);
+    }
+    public void changeHitbox() {
+        if (this.getFixtureList().contains(normal) && normal_attack && facing_right == false) {
+            normal.destroy();
+            normal_attack_hb = new SolidFixture(this, normal_attack_Left_Shape);
+            normal_attack_hb.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(normal) && normal_attack && facing_right) {
+            normal.destroy();
+            normal_attack_hb = new SolidFixture(this, normal_attack_Right_Shape);
+            normal_attack_hb.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(normal) && special_attack && !facing_right) {
+            normal.destroy();
+            special_attack_hb = new SolidFixture(this,special_attack_Left_Shape);
+            special_attack_hb.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(normal) && special_attack && facing_right) {
+            normal.destroy();
+            special_attack_hb = new SolidFixture(this, special_attack_Right_Shape);
+            special_attack_hb.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(normal) && ultimate_attack && !facing_right) {
+            normal.destroy();
+            ultimate_attack_hb = new SolidFixture(this, ultimate_attack_Left_Shape);
+            ultimate_attack_hb.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(normal) && ultimate_attack&& facing_right) {
+            normal.destroy();
+            ultimate_attack_hb = new SolidFixture(this, ultimate_attack_Right_Shape);
+            ultimate_attack_hb.setFriction(30);
+        }
+
+    }
+    public void resetHitbox(){
+        if (this.getFixtureList().contains(normal_attack_hb)){
+            normal_attack_hb.destroy();
+            normal = new SolidFixture(this,playerShape);
+            normal.setFriction(30);
+        }
+      else   if (this.getFixtureList().contains(special_attack_hb)){
+            special_attack_hb.destroy();
+            normal = new SolidFixture(this,playerShape);
+            normal.setFriction(30);
+        }
+       else if (this.getFixtureList().contains(ultimate_attack_hb)){
+            ultimate_attack_hb.destroy();
+            normal = new SolidFixture(this,playerShape);
+            normal.setFriction(30);
+        }
     }
 
     public static int getFireball_num() {
