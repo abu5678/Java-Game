@@ -7,6 +7,8 @@ public class Level3 extends GameLevel {
 
     public Level3(Game game) {
         super(game);
+        Boss boss = new Boss(this,getPlayer());
+        boss.setPosition(new Vec2(35, -11));
 
         BodyImage platform1_image = new BodyImage("data/level/dungeon_platform1.PNG", 4);
         BodyImage platform2_image = new BodyImage("data/level/dungeon_platform3.PNG", 4);
@@ -40,9 +42,6 @@ public class Level3 extends GameLevel {
         platform5.setPosition(new Vec2(33f, -6f));
         platform5.addImage(platform2_image);
         platform5.setAlwaysOutline(true);
-
-        Boss boss = new Boss(this,getPlayer());
-        boss.setPosition(new Vec2(35, -11));
 
     }
 
