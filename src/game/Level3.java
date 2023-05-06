@@ -27,19 +27,19 @@ public class Level3 extends GameLevel {
 
         Shape shape3 = new BoxShape(5.5f, 1.5f);
         StaticBody platform3 = new StaticBody(this, shape3);
-        platform3.setPosition(new Vec2(-2f, -6f));
+        platform3.setPosition(new Vec2(-2f, -5f));
         platform3.addImage(platform2_image);
         platform3.setAlwaysOutline(true);
 
         Shape shape4 = new BoxShape(5.5f, 1.5f);
         StaticBody platform4 = new StaticBody(this, shape4);
-        platform4.setPosition(new Vec2(15f, 3));
+        platform4.setPosition(new Vec2(15f, 4));
         platform4.addImage(platform2_image);
         platform4.setAlwaysOutline(true);
 
         Shape shape5 = new BoxShape(5.5f, 1.5f);
         StaticBody platform5 = new StaticBody(this, shape5);
-        platform5.setPosition(new Vec2(33f, -6f));
+        platform5.setPosition(new Vec2(33f, -5f));
         platform5.addImage(platform2_image);
         platform5.setAlwaysOutline(true);
 

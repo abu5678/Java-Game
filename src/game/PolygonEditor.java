@@ -179,7 +179,7 @@ public class PolygonEditor extends JPanel
         String s = "";
         for (Point2D.Float p : points) {
             if (s.length() > 0) s += ", ";
-            s += round(p.x-4) + "f" + "," + round(p.y+2) + "f";
+            s += round(p.x) + "f" + "," + round(p.y+3) + "f";
         }
         return s;
     }
@@ -243,7 +243,7 @@ public class PolygonEditor extends JPanel
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        String fileName = "data/player/ultimate_attack_right.GIF";
+        String fileName = "data/boss/boss_attack_right.GIF";
         float boxHeight = 12f;
         int firstCoordIndex = 0;
         if (args.length > 0) {
