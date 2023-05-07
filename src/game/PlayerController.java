@@ -173,8 +173,8 @@ public class PlayerController implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        player.removeAllImages();
-        //player.changeHitbox();
+       // player.removeAllImages();
+        player.changeHitbox();
     }
 
     public void updatePlayer(Player newPlayer){

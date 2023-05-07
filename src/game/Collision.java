@@ -23,6 +23,7 @@ public class Collision implements CollisionListener, ActionListener {
     }
 
     public Collision(Player player) {
+
         this.player = player;
     }
 

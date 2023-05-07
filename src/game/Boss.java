@@ -29,6 +29,15 @@ public class Boss extends Walker implements StepListener, ActionListener {
             1.01f,-1.5f, 5.17f,-1.5f, 5.17f,3.12f, 0.77f,3.06f
 
     );
+
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public boolean isUltimate_attack() {
+        return ultimate_attack;
+    }
+
     private static final Shape ultimate_left_hb = new PolygonShape(
             9.41f,-0.54f, -9.95f,-0.7f, -9.9f,3.43f, 8.98f,3.38f
 
