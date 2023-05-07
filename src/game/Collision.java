@@ -64,6 +64,7 @@ public class Collision implements CollisionListener, ActionListener {
             if (!player.isUltimate_attack() && !player.isNormal_attack() && !player.isSpecial_attack()
             && !player.isFireball_attack()) {
                 player.setHealth(player.getHealth() - 25);
+                player.checkhp();
                 if (player.getPosition().x < enemy.getPosition().x) {
                     player.startWalking(-7);
                     player_knockback();
@@ -73,6 +74,7 @@ public class Collision implements CollisionListener, ActionListener {
                     player_knockback();
                 }
             }
+
         }
     }
 

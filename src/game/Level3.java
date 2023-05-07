@@ -10,7 +10,7 @@ public class Level3 extends GameLevel {
         Boss boss = new Boss(this,getPlayer());
         boss.setPosition(new Vec2(35, -11));
 
-        BossCollision boss_collision = new BossCollision(getPlayer(),boss);
+        BossCollision boss_collision = new BossCollision(getPlayer(),boss,game);
         getPlayer().addCollisionListener(boss_collision);
 
         BodyImage platform1_image = new BodyImage("data/level/dungeon_platform1.PNG", 4);

@@ -84,17 +84,19 @@ public class Player extends Walker {
     private static int fireball_num = 0;
 
     private static int energy = 0;
+    private Game game;
 
 
 
     //public static boolean des_fixture = false;
     //SolidFixture right;
 
-    public Player(World world) {
+    public Player(World world,Game game) {
         super(world);
         addImage(player_image);
         normal = new SolidFixture(this, playerShape);
         normal.setFriction(30);
+        this.game = game;
         this.health = 200;
         this.energy = 0;
         this.fireball_num = 0;
@@ -209,6 +211,11 @@ public class Player extends Walker {
                 projectile.setLinearVelocity(new Vec2(30, 0));
                 fireball_num = fireball_num - 1;
             }
+        }
+    }
+    public void checkhp(){
+        if(health <= 0){
+            game.gameOver();
         }
     }
 

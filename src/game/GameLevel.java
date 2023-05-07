@@ -21,7 +21,7 @@ public abstract class GameLevel extends World {
     }
 
     public GameLevel(Game game) {
-        player = new Player(this);
+        player = new Player(this,game);
         player.setPosition(new Vec2(-12, -10));
 
         ItemPickup items = new ItemPickup(player);

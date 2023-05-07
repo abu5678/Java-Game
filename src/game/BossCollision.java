@@ -29,10 +29,13 @@ public class BossCollision implements CollisionListener, ActionListener {
         }
     }
     private Boss boss;
+    private Game game;
 
-    public BossCollision(Player player,Boss boss) {
+    public BossCollision(Player player,Boss boss,Game game) {
         this.boss = boss;
         this.player = player;
+        this.game = game;
+
     }
     public void player_knockback(){
         player.removeAllImages();
@@ -67,6 +70,7 @@ public class BossCollision implements CollisionListener, ActionListener {
             Boss = collisionEvent.getOtherBody();
             if (boss.isAttack()) {
                 player.setHealth(player.getHealth() - 50);
+                player.checkhp();
                 if (player.getPosition().x < boss.getPosition().x) {
                     player.startWalking(-7);
                     player_knockback();
@@ -78,6 +82,7 @@ public class BossCollision implements CollisionListener, ActionListener {
             }
             if (boss.isUltimate_attack()) {
                 player.setHealth(player.getHealth() - 100);
+                player.checkhp();
                 if (player.getPosition().x < boss.getPosition().x) {
                     player.startWalking(-7);
                     player_knockback();
@@ -90,6 +95,7 @@ public class BossCollision implements CollisionListener, ActionListener {
             if (!boss.isUltimate_attack() && !boss.isAttack() && !player.isUltimate_attack()
             && !player.isNormal_attack() && !player.isSpecial_attack()) {
                 player.setHealth(player.getHealth() - 25);
+                player.checkhp();
                 if (player.getPosition().x < boss.getPosition().x) {
                     player.startWalking(-7);
                     player_knockback();
@@ -129,6 +135,7 @@ public class BossCollision implements CollisionListener, ActionListener {
             am4.flipHorizontal();
         }
         boss.destroy();
+        game.gameOver();
 
     }
 }
