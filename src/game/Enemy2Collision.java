@@ -10,11 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class Collision implements CollisionListener, ActionListener {
+public class Enemy2Collision implements CollisionListener, ActionListener {
     private Player player;
-    private Enemy Enemy;
+    private Enemy2 enemy2;
     private Body enemy;
     private static BodyImage player_hit = new BodyImage("data/player/dead0.png", 3f);
+    private static BodyImage enemy2_dead = new BodyImage("data/enemy2/enemy2_dead.png",4);
+
 
     private static SoundClip swordHit;
     static {
@@ -25,9 +27,9 @@ public class Collision implements CollisionListener, ActionListener {
         }
     }
 
-    public Collision(Player player) {
-
+    public Enemy2Collision(Player player,Enemy2 enemy2) {
         this.player = player;
+        this.enemy2 = enemy2;
     }
     public void player_knockback(){
         player.removeAllImages();
@@ -42,27 +44,33 @@ public class Collision implements CollisionListener, ActionListener {
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
-        if (!(collisionEvent.getReportingBody() instanceof Player)) {
-            collisionEvent.getReportingBody().destroy();
-        }
-
-        if (collisionEvent.getOtherBody() instanceof Enemy) {
+        if (collisionEvent.getOtherBody() instanceof Enemy2) {
             enemy = collisionEvent.getOtherBody();
+            if (enemy2.isAttack()) {
+                player.setHealth(player.getHealth() - 50);
+                if (player.getPosition().x < enemy2.getPosition().x) {
+                    player.startWalking(-7);
+                    player_knockback();
+                }
+                if (player.getPosition().x > enemy2.getPosition().x) {
+                    player.startWalking(7);
+                    player_knockback();
+                }
+            }
             if (player.isNormal_attack()) {
                 swordHit.play();
             }
             if (player.isNormal_attack() || player.isSpecial_attack() || player.isUltimate_attack() ||
                     player.isFireball_attack()) {
                 enemy.removeAllImages();
-                enemy.addImage(new BodyImage("data/enemy/enemy_dead5.GIF", 3));
+                enemy.addImage(enemy2_dead);
                 player.setEnemiesKilled(player.getEnemiesKilled() + 1);
 
-                Timer timer = new Timer(500, this);
+                Timer timer = new Timer(0, this);
                 timer.setRepeats(false);
                 timer.start();
             }
-            if (!player.isUltimate_attack() && !player.isNormal_attack() && !player.isSpecial_attack()
-            && !player.isFireball_attack()) {
+            if (!player.isUltimate_attack() && !player.isNormal_attack() && !player.isSpecial_attack()) {
                 player.setHealth(player.getHealth() - 25);
                 if (player.getPosition().x < enemy.getPosition().x) {
                     player.startWalking(-7);
@@ -78,11 +86,10 @@ public class Collision implements CollisionListener, ActionListener {
 
 
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        enemy.destroy();
         player.setScore(player.getScore()+500);
-        player.setFireball_attack(false);
+        enemy.removeAllImages();
+        enemy.destroy();
     }
 }

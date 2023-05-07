@@ -74,6 +74,10 @@ public class Enemy2 extends Walker implements StepListener, ActionListener {
         }
     }
 
+    public boolean isAttack() {
+        return attack;
+    }
+
     public void change_img() {
         this.removeAllImages();
         if (attack) {

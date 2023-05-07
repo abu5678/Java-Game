@@ -128,6 +128,7 @@ public class BossCollision implements CollisionListener, ActionListener {
             AttachedImage am4 = new AttachedImage(boss, boss_dead, 1, 0, new Vec2(0,0));
             am4.flipHorizontal();
         }
+        boss.destroy();
 
     }
 }

@@ -75,9 +75,14 @@ public class Level1 extends GameLevel{
         Fireball fireball1 = new Fireball(this);
         fireball1.setPosition(new Vec2(52,8));
 
+        Portal portal1 = new Portal(this);
+        portal1.setPosition(new Vec2(96,2));
+        getPlayer().addCollisionListener(new PortalCollision(this, game));
+
     }
     public boolean isComplete() {
-        if (getPlayer().getEnemiesKilled() == 0){
+        if (getPlayer().getEnemiesKilled() >= 3){
+            System.out.println(getPlayer().getEnemiesKilled());
             return true;
         }
         else

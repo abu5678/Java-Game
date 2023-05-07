@@ -10,6 +10,7 @@ public abstract class GameLevel extends World {
     private Player player;
 
     private Enemy enemy;
+    private Enemy2 enemy2;
 
     private Portal portal;
 
@@ -29,9 +30,6 @@ public abstract class GameLevel extends World {
         Collision enemy_collision = new Collision(player);
         player.addCollisionListener(enemy_collision);
 
-        Portal portal1 = new Portal(this);
-        portal1.setPosition(new Vec2(-23,-11));
-        player.addCollisionListener(new PortalCollision(this, game));
 
     }
 
