@@ -44,7 +44,7 @@ public class Collision implements CollisionListener, ActionListener {
                     enemy.addImage(new BodyImage("data/enemy/enemy_dead5.GIF", 3));
                     player.setEnemiesKilled(player.getEnemiesKilled()+1);
 
-                    Timer timer = new Timer(1000, this);
+                    Timer timer = new Timer(2000, this);
                     timer.setRepeats(false);
                     timer.start();
 

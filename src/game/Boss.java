@@ -63,7 +63,24 @@ public class Boss extends Walker implements StepListener, ActionListener {
     SolidFixture boss_ultimate;
     Player player;
     int no_of_attacks = 0;
-    int health = 350;
+
+    public Timer getAttack_desicion_timer() {
+        return attack_desicion_timer;
+    }
+
+    public boolean isFacing_right() {
+        return facing_right;
+    }
+
+    public boolean isFacing_left() {
+        return facing_left;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    int health = 500;
 
     public int getHealth() {
         return health;
@@ -84,115 +101,121 @@ public class Boss extends Walker implements StepListener, ActionListener {
 
     @Override
     public void preStep(StepEvent stepEvent) {
-        if (getPosition().x > player.getPosition().x) {
-            facing_right = false;
-            facing_left = true;
-            if(!attack && !ultimate_attack) {
-                this.removeAllImages();
-                addImage(idle_image);
+        if (health > 0) {
+            if (getPosition().x > player.getPosition().x) {
+                facing_right = false;
+                facing_left = true;
+                if (!attack && !ultimate_attack) {
+                    this.removeAllImages();
+                    addImage(idle_image);
+                }
+                startWalking(-3);
             }
-            startWalking(-3);
-        }
-        if (getPosition().x < player.getPosition().x) {
-            facing_right = true;
-            facing_left = false;
-            if(!attack && !ultimate_attack) {
-                this.removeAllImages();
-                AttachedImage am2 = new AttachedImage(this, idle_image, 1, 0, new Vec2(0, 0));
-                am2.flipHorizontal();
-            }
-            startWalking(3);
+            if (getPosition().x < player.getPosition().x) {
+                facing_right = true;
+                facing_left = false;
+                if (!attack && !ultimate_attack) {
+                    this.removeAllImages();
+                    AttachedImage am2 = new AttachedImage(this, idle_image, 1, 0, new Vec2(0, 0));
+                    am2.flipHorizontal();
+                }
+                startWalking(3);
 
-        }
-        if (getPosition().x < player.getPosition().x + 2 &&
-                getPosition().x > player.getPosition().x - 2) {
-            stopWalking();
+            }
+            if (getPosition().x < player.getPosition().x + 2 &&
+                    getPosition().x > player.getPosition().x - 2) {
+                stopWalking();
+            }
         }
     }
 
     public void change_img() {
-       // attack_desicion_timer.stop();
-       // ultimate_desicion_timer.stop();
-        this.removeAllImages();
-        if (ultimate_attack) {
-            attack = false;
-            //attack_desicion_timer.stop();
-           // attack_animation_timer.stop();
-          //  ultimate_desicion_timer.restart();
-            AttachedImage am7 = new AttachedImage(this, ultimate_image, 1, 0, new Vec2(0, 9));
-            if (facing_right) {
-                this.removeAllImages();
-                AttachedImage am8 = new AttachedImage(this, ultimate_image, 1, 0, new Vec2(0, 9));
-                am8.flipHorizontal();
-            }
-            if (!ultimate_animation_timer.isRunning()) {
-                ultimate_animation_timer.setRepeats(false);
-                ultimate_animation_timer.start();
-                attack_anim = true;
+        if (health > 0) {
+            // attack_desicion_timer.stop();
+            // ultimate_desicion_timer.stop();
+            this.removeAllImages();
+            if (ultimate_attack) {
+                attack = false;
+                //attack_desicion_timer.stop();
+                // attack_animation_timer.stop();
+                //  ultimate_desicion_timer.restart();
+                AttachedImage am7 = new AttachedImage(this, ultimate_image, 1, 0, new Vec2(0, 9));
+                if (facing_right) {
+                    this.removeAllImages();
+                    AttachedImage am8 = new AttachedImage(this, ultimate_image, 1, 0, new Vec2(0, 9));
+                    am8.flipHorizontal();
+                }
+                if (!ultimate_animation_timer.isRunning()) {
+                    ultimate_animation_timer.setRepeats(false);
+                    ultimate_animation_timer.start();
+                    attack_anim = true;
 
-            }
-            else{
-                ultimate_animation_timer.restart();
-                attack_anim = true;
+                } else {
+                    ultimate_animation_timer.restart();
+                    attack_anim = true;
 
+                }
             }
-        }
-        // code
-        if (attack) {
-            ultimate_attack = false;
-           // attack_desicion_timer.restart();
-            AttachedImage am5 = new AttachedImage(this, attack_image, 1, 0, new Vec2(0, 3));
-            if (facing_right) {
-                this.removeAllImages();
-                AttachedImage am6 = new AttachedImage(this, attack_image, 1, 0, new Vec2(0, 3));
-                am6.flipHorizontal();
-            }
-            if (!attack_animation_timer.isRunning()) {
-                attack_animation_timer.setRepeats(false);
-                attack_animation_timer.start();
-                attack_anim = true;
-            }
-            else{
-                attack_animation_timer.restart();
-                attack_anim = true;
+            // code
+            if (attack) {
+                ultimate_attack = false;
+                // attack_desicion_timer.restart();
+                AttachedImage am5 = new AttachedImage(this, attack_image, 1, 0, new Vec2(0, 3));
+                if (facing_right) {
+                    this.removeAllImages();
+                    AttachedImage am6 = new AttachedImage(this, attack_image, 1, 0, new Vec2(0, 3));
+                    am6.flipHorizontal();
+                }
+                if (!attack_animation_timer.isRunning()) {
+                    attack_animation_timer.setRepeats(false);
+                    attack_animation_timer.start();
+                    attack_anim = true;
+                } else {
+                    attack_animation_timer.restart();
+                    attack_anim = true;
+                }
             }
         }
     }
 
     public void change_hb() {
-        if (this.getFixtureList().contains(boss_idle) && attack && facing_left) {
-            boss_idle.destroy();
-            boss_attack = new SolidFixture(this, attack_left_hb);
-            boss_attack.setFriction(30);
-        }
-        if (this.getFixtureList().contains(boss_idle) && attack && facing_right) {
-            boss_idle.destroy();
-            boss_attack = new SolidFixture(this, attack_right_hb);
-            boss_attack.setFriction(30);
-        }
-        if (this.getFixtureList().contains(boss_idle) && ultimate_attack && facing_left) {
-            boss_idle.destroy();
-            boss_ultimate = new SolidFixture(this, ultimate_left_hb);
-            boss_ultimate.setFriction(30);
-        }
-        if (this.getFixtureList().contains(boss_idle) && ultimate_attack && facing_right) {
-            boss_idle.destroy();
-            boss_ultimate = new SolidFixture(this, ultimate_right_hb);
-            boss_ultimate.setFriction(30);
+        if (health > 0) {
+            if (this.getFixtureList().contains(boss_idle) && attack && facing_left) {
+                boss_idle.destroy();
+                boss_attack = new SolidFixture(this, attack_left_hb);
+                boss_attack.setFriction(30);
+            }
+            if (this.getFixtureList().contains(boss_idle) && attack && facing_right) {
+                boss_idle.destroy();
+                boss_attack = new SolidFixture(this, attack_right_hb);
+                boss_attack.setFriction(30);
+            }
+            if (this.getFixtureList().contains(boss_idle) && ultimate_attack && facing_left) {
+                boss_idle.destroy();
+                boss_ultimate = new SolidFixture(this, ultimate_left_hb);
+                boss_ultimate.setFriction(30);
+            }
+            if (this.getFixtureList().contains(boss_idle) && ultimate_attack && facing_right) {
+                boss_idle.destroy();
+                boss_ultimate = new SolidFixture(this, ultimate_right_hb);
+                boss_ultimate.setFriction(30);
+            }
         }
     }
-    public void resetHitbox(){
-        if (this.getFixtureList().contains(boss_attack)){
-            boss_attack.destroy();
-            boss_idle = new SolidFixture(this, enemyShape);
-            boss_idle.setFriction(30);
-        }
-        if (this.getFixtureList().contains(boss_ultimate)){
-            boss_ultimate.destroy();
-            boss_idle = new SolidFixture(this, enemyShape);
-            boss_idle.setFriction(30);
-        }
+    public void resetHitbox() {
+        if (health > 0) {
+            if (this.getFixtureList().contains(boss_attack)) {
+                boss_attack.destroy();
+                boss_idle = new SolidFixture(this, enemyShape);
+                boss_idle.setFriction(30);
+            }
+            if (this.getFixtureList().contains(boss_ultimate)) {
+                boss_ultimate.destroy();
+                boss_idle = new SolidFixture(this, enemyShape);
+                boss_idle.setFriction(30);
+            }
 
+        }
     }
     @Override
     public void postStep(StepEvent stepEvent) {

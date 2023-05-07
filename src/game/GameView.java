@@ -47,12 +47,15 @@ public class GameView extends UserView {
         if (player.getFireball_num() > 0){
             fg.drawImage(fireball, 100,-20,500,220,this);
         }
-      /*  if(level_count == 3){
+/*
+        if(level_count == 3){
             fg.setColor(Color.black);
             fg.fillRect(200,45,350,40);
             fg.setColor(Color.green);
             fg.fillRect(200,50,boss.getHealth(),30);
-        }*/
+        }
+
+ */
     }
     @Override
     protected void paintBackground(Graphics2D bg) {
