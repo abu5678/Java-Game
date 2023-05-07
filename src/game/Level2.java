@@ -17,6 +17,9 @@ public class Level2 extends GameLevel {
         platform1.setPosition(new Vec2(1f, -15f));
         platform1.addImage(platform1_image);
         platform1.setAlwaysOutline(true);
+
+        Enemy2 enemy1 = new Enemy2(this,getPlayer());
+        enemy1.setPosition(new Vec2(13, -11));
     }
 
     @Override

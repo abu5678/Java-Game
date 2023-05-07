@@ -46,10 +46,17 @@ public class Level3 extends GameLevel {
         platform5.addImage(platform2_image);
         platform5.setAlwaysOutline(true);
 
+        Energy energy1 = new Energy(this);
+        energy1.setPosition(new Vec2(15,9));
+
     }
 
     @Override
     public boolean isComplete() {
-        return false;
+        if(getBoss().getHealth() <= 0){
+            return true;
+        }
+        else
+            return false;
     }
 }

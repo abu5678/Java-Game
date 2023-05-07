@@ -83,7 +83,7 @@ public class PlayerController implements KeyListener, ActionListener {
         }
 
         else if (code == KeyEvent.VK_L) {
-            if (player.getEnergy()<= 100) {
+            if (player.getEnergy()>= 100) {
                 ultimate_attack_timer.setRepeats(false);
                 ultimate_attack_timer.start();
                 player.setUltimate_attack(true);
@@ -99,7 +99,7 @@ public class PlayerController implements KeyListener, ActionListener {
 
         else if (code == KeyEvent.VK_J) {
             //75
-            if(player.getEnergy()<= 75) {
+            if(player.getEnergy()>= 75) {
                 special_attack_timer.setRepeats(false);
                 special_attack_timer.start();
                 player.setSpecial_attack(true);
