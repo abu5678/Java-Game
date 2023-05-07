@@ -23,14 +23,22 @@ public class Game {
     private SoundClip level1_music;
     private SoundClip level2_music;
     private SoundClip level3_music;
+    int level_count;
 
     /** Initialise a new Game. */
     public Game() {
         currentLevel = new Level1(this);
+        int level_count = 1;
         //GameLevel world = new GameLevel(this);
         Player player = currentLevel.getPlayer();
+        try {
+            level1_music = new SoundClip("data/level/level1.wav");
+            level1_music.loop();
+            level1_music.setVolume(0.1);
+        } catch (UnsupportedAudioFileException|IOException|LineUnavailableException e) {
+        }
 
-        view = new GameView(currentLevel, 1080, 700, player);
+        view = new GameView(currentLevel, 1080, 700, player,level_count,currentLevel.getBoss());
         currentLevel.addStepListener(new Tracker(view, currentLevel.getPlayer()));
 
         pc = new PlayerController(currentLevel.getPlayer());
@@ -64,13 +72,34 @@ public class Game {
     public void goToNextLevel() {
         if (currentLevel instanceof Level1) {
             currentLevel.stop();
+            currentLevel = new Level2(this);
+            view.setLevel_count(2);
+            Image level_2_background = new ImageIcon("data/level/level2_bg.jpg").getImage();
+            view.setBackground(level_2_background);
+            level1_music.stop();
+            try {
+                level2_music = new SoundClip("data/level/level2.wav");
+                level2_music.loop();
+                level2_music.setVolume(0.1);
+            } catch (UnsupportedAudioFileException|IOException|LineUnavailableException e) {
+            }
+            //level now refer to the new level
+            view.setWorld(currentLevel);
+            pc.updatePlayer(currentLevel.getPlayer());
+            currentLevel.addStepListener(new Tracker(view, currentLevel.getPlayer()));
+            currentLevel.start();
+        }
+        else if (currentLevel instanceof Level2) {
+            currentLevel.stop();
             currentLevel = new Level3(this);
+            view.setLevel_count(3);
             Image level_3_background = new ImageIcon("data/level/level3_bg.jpg").getImage();
             view.setBackground(level_3_background);
+            level2_music.stop();
             try {
                 level3_music = new SoundClip("data/level/level3_music.wav");
                 level3_music.loop();
-                level3_music.setVolume(0.2);
+                level3_music.setVolume(0.1);
             } catch (UnsupportedAudioFileException|IOException|LineUnavailableException e) {
 
             }

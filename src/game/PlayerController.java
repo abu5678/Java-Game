@@ -67,10 +67,10 @@ public class PlayerController implements KeyListener, ActionListener {
         else if (code == KeyEvent.VK_P) {
             player.setNormal_attack(true);
             player.removeAllImages();
-            normal_attack_animation_timer.setRepeats(false);
-            normal_attack_animation_timer.start();
-           // normal_attack_timer.setRepeats(false);
-           // normal_attack_timer.start();
+          //  normal_attack_animation_timer.setRepeats(false);
+          // normal_attack_animation_timer.start();
+            normal_attack_timer.setRepeats(false);
+            normal_attack_timer.start();
 
 
             // code

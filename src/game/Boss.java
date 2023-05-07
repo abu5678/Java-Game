@@ -30,7 +30,7 @@ public class Boss extends Walker implements StepListener, ActionListener {
 
     );
     private static final Shape ultimate_left_hb = new PolygonShape(
-            9.41f,-0.27f, -9.95f,-0.32f, -9.9f,4.57f, 8.98f,4.41f
+            9.41f,-0.54f, -9.95f,-0.7f, -9.9f,3.43f, 8.98f,3.38f
 
     );
     private static final Shape ultimate_right_hb = new PolygonShape(
@@ -54,6 +54,11 @@ public class Boss extends Walker implements StepListener, ActionListener {
     SolidFixture boss_ultimate;
     Player player;
     int no_of_attacks = 0;
+    int health = 350;
+
+    public int getHealth() {
+        return health;
+    }
 
     public Boss(World world, Player player) {
         super(world);
@@ -73,16 +78,25 @@ public class Boss extends Walker implements StepListener, ActionListener {
         if (getPosition().x > player.getPosition().x) {
             facing_right = false;
             facing_left = true;
-            startWalking(-4);
+            if(!attack && !ultimate_attack) {
+                this.removeAllImages();
+                addImage(idle_image);
+            }
+            startWalking(-3);
         }
         if (getPosition().x < player.getPosition().x) {
             facing_right = true;
             facing_left = false;
-            startWalking(4);
+            if(!attack && !ultimate_attack) {
+                this.removeAllImages();
+                AttachedImage am2 = new AttachedImage(this, idle_image, 1, 0, new Vec2(0, 0));
+                am2.flipHorizontal();
+            }
+            startWalking(3);
+
         }
         if (getPosition().x < player.getPosition().x + 2 &&
                 getPosition().x > player.getPosition().x - 2) {
-            resetHitbox();
             stopWalking();
         }
     }
@@ -181,6 +195,7 @@ public class Boss extends Walker implements StepListener, ActionListener {
         if (attack_anim){
             attack_anim = false;
             ultimate_attack = false;
+            attack = false;
             this.removeAllImages();
             resetHitbox();
             if (facing_left) {

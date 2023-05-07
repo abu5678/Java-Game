@@ -13,6 +13,12 @@ public abstract class GameLevel extends World {
 
     private Portal portal;
 
+    private Boss boss;
+
+    public Boss getBoss() {
+        return boss;
+    }
+
     public GameLevel(Game game) {
         player = new Player(this);
         player.setPosition(new Vec2(-12, -10));

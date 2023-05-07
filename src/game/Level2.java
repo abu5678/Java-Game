@@ -10,16 +10,22 @@ public class Level2 extends GameLevel {
     public Level2(Game game) {
         super(game);
 
-        BodyImage platform1_image = new BodyImage("data/level/platform1.PNG", 4);
+        BodyImage platform1_image = new BodyImage("data/level/dungeon_platform1.PNG", 4);
 
-        Shape shape1 = new BoxShape(8, 1.5f);
+        Shape shape1 = new BoxShape(19.5f, 2f);
         StaticBody platform1 = new StaticBody(this, shape1);
-        platform1.setPosition(new Vec2(-19f, -15f));
+        platform1.setPosition(new Vec2(1f, -15f));
         platform1.addImage(platform1_image);
+        platform1.setAlwaysOutline(true);
     }
 
     @Override
     public boolean isComplete() {
-        return false;
+        if (getPlayer().getEnemiesKilled() == 0){
+            return true;
+        }
+        else
+            return false;
     }
+
 }
